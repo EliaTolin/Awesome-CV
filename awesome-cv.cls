@@ -74,7 +74,7 @@
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
-\RequirePackage{fontawesome5}
+\RequirePackage{fontawesome}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -751,4 +751,22 @@
       \\\\\\
       \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
     }
+}
+
+\definecolor{frontColor}{rgb}{0.22,0.45,0.70}% light blue
+\definecolor{backColor}{RGB}{200,200,200}% grey
+\newcommand{\grade}[1]{%
+    \begin{tikzpicture}
+    \clip (1em-.4em,-.35em) rectangle (5em +.5em ,1em);
+    \foreach \x in {1,2,...,5}{
+        \path[{fill=backColor}] (\x em,0) circle (.35em);
+    }
+    \begin{scope}
+    \clip (1em-.4em,-.35em) rectangle (#1em +.5em ,1em);
+    \foreach \x in {1,2,...,5}{
+        \path[{fill=frontColor}] (\x em,0) circle (.35em);
+    }
+    \end{scope}
+
+    \end{tikzpicture}%
 }
